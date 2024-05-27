@@ -1,0 +1,35 @@
+##version: '3.7'
+
+services:
+  users-service:
+    build:
+      context: ./users-service
+    container_name: users-service
+    ports:
+      - "8001:9000"
+    volumes:
+      - ./users-service:/var/www
+    depends_on:
+      - rabbitmq
+
+  notifications-service:
+    build:
+      context: ./notifications-service
+    container_name: notifications-service
+    ports:
+      - "8002:9000"
+    volumes:
+      - ./notifications-service:/var/www
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:
