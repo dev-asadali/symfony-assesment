@@ -38,6 +38,9 @@
 6. Test the setup:
     - Use Postman or curl to send a POST request to `http://localhost:8001/users` with the appropriate JSON body.
     - Check logs of the notifications service to see if the event was consumed.
+    - Service: users
+    Endpoint: POST /users
+    Request body: { "email", "firstName", "lastName" }
 
 ## Project Structure
 
